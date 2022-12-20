@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.neoblade298.neocore.NeoCore;
 import me.neoblade298.neocore.instancing.InstanceType;
+import me.neoblade298.townybridge.commands.Commands;
 import me.neoblade298.townybridge.other.InstanceListener;
 import me.neoblade298.townybridge.towny.TownyListener;
 
@@ -25,6 +26,7 @@ public class TownyBridge extends JavaPlugin implements Listener {
 		}
 		else {
 			Bukkit.getPluginManager().registerEvents(new InstanceListener(), this);
+			initCommands();
 		}
 		
 	}
@@ -34,11 +36,12 @@ public class TownyBridge extends JavaPlugin implements Listener {
 	    super.onDisable();
 	}
 	
-	/*
 	private void initCommands() {
-		CommandManager mngr = new CommandManager("disenchant", this);
+		Commands cmds = new Commands();
+	    this.getCommand("towny").setExecutor(cmds);
+	    this.getCommand("town").setExecutor(cmds);
+	    this.getCommand("nation").setExecutor(cmds);
 	}
-	*/
 	
 	public static TownyBridge inst() {
 		return inst;

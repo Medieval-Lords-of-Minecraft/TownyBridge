@@ -5,3 +5,13 @@ depend: [NeoCore]
 softdepend: [Towny]
 version: 1.0
 api-version: 1.16
+commands:
+   town:
+      description: Used to let the player know they're on the wrong server
+      usage: /town
+   towny:
+      description: Used to let the player know they're on the wrong server
+      usage: /towny
+   nation:
+      description: Used to let the player know they're on the wrong server
+      usage: /nation
