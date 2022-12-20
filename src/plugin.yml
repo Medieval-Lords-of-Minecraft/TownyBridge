@@ -1,12 +1,7 @@
-name: TownyChatBridge
-main: me.neoblade298.townychatbridge.TownyChatBridge
+name: TownyBridge
+main: me.neoblade298.townybridge.TownyBridge
 author: [Neoblade298]
 depend: [NeoCore]
 softdepend: [Towny]
 version: 1.0
 api-version: 1.16
-commands:
-   disenchant:
-      description: This command allows you to disenchant item in hand
-      usage: /disenchant
-      permission: disenchant.true

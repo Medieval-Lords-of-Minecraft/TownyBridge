@@ -1,4 +1,4 @@
-package me.neoblade298.townychatbridge.towny;
+package me.neoblade298.townybridge.towny;
 
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ import com.palmergames.bukkit.towny.object.Town;
 import me.neoblade298.neocore.bungee.BungeeAPI;
 import me.neoblade298.neocore.bungee.PluginMessageEvent;
 import me.neoblade298.neocore.util.Util;
-import me.neoblade298.townychatbridge.TownyChatBridge;
+import me.neoblade298.townybridge.TownyBridge;
 
 public class TownyListener implements Listener {
 	TownyAPI api;
@@ -109,7 +109,7 @@ public class TownyListener implements Listener {
 	private void handleIncomingTownChat(PluginMessageEvent e) {
 		if (api == null) api = TownyAPI.getInstance();
 		long timestamp = Long.parseLong(e.getMessages().get(3));
-		if (timestamp + TownyChatBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
+		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 		String msg = "&f[&3TC&f] &f" + e.getMessages().get(2) + ": &b" + e.getMessages().get(0);
 		
 		UUID tuuid = UUID.fromString(e.getMessages().get(1));
@@ -122,7 +122,7 @@ public class TownyListener implements Listener {
 	private void handleIncomingNationChat(PluginMessageEvent e) {
 		if (api == null) api = TownyAPI.getInstance();
 		long timestamp = Long.parseLong(e.getMessages().get(3));
-		if (timestamp + TownyChatBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
+		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 		
 		UUID tuuid = UUID.fromString(e.getMessages().get(1));
 		Town town = api.getTown(tuuid);

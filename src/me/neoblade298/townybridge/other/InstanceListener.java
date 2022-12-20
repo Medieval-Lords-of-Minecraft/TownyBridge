@@ -1,4 +1,4 @@
-package me.neoblade298.townychatbridge.other;
+package me.neoblade298.townybridge.other;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import me.neoblade298.neocore.NeoCore;
 import me.neoblade298.neocore.bungee.BungeeAPI;
 import me.neoblade298.neocore.bungee.PluginMessageEvent;
 import me.neoblade298.neocore.util.Util;
-import me.neoblade298.townychatbridge.TownyChatBridge;
+import me.neoblade298.townybridge.TownyBridge;
 
 public class InstanceListener implements Listener {
 	private HashSet<UUID> towns = new HashSet<UUID>();
@@ -59,7 +59,7 @@ public class InstanceListener implements Listener {
 					e.printStackTrace();
 				}
 			}
-		}.runTaskAsynchronously(TownyChatBridge.inst());
+		}.runTaskAsynchronously(TownyBridge.inst());
 	}
 
 	@EventHandler
@@ -133,13 +133,13 @@ public class InstanceListener implements Listener {
 				}
 
 			}
-		}.runTaskAsynchronously(TownyChatBridge.inst());
+		}.runTaskAsynchronously(TownyBridge.inst());
 	}
 
 	private void handleTownChat(PluginMessageEvent e) {
 		UUID town = UUID.fromString(e.getMessages().get(1));
 		long timestamp = Long.parseLong(e.getMessages().get(3));
-		if (timestamp + TownyChatBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
+		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 		
 		handleTownChat(town, e.getMessages().get(2), e.getMessages().get(0));
 	}
@@ -156,7 +156,7 @@ public class InstanceListener implements Listener {
 	private void handleNationChat(PluginMessageEvent e) {
 		UUID town = UUID.fromString(e.getMessages().get(1));
 		long timestamp = Long.parseLong(e.getMessages().get(4));
-		if (timestamp + TownyChatBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
+		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 		
 		handleNationChat(town, e.getMessages().get(3), e.getMessages().get(2), e.getMessages().get(0));
 	}

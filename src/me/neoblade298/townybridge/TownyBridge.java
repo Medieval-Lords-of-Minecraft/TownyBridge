@@ -1,4 +1,4 @@
-package me.neoblade298.townychatbridge;
+package me.neoblade298.townybridge;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -6,11 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.neoblade298.neocore.NeoCore;
 import me.neoblade298.neocore.instancing.InstanceType;
-import me.neoblade298.townychatbridge.other.InstanceListener;
-import me.neoblade298.townychatbridge.towny.TownyListener;
+import me.neoblade298.townybridge.other.InstanceListener;
+import me.neoblade298.townybridge.towny.TownyListener;
 
-public class TownyChatBridge extends JavaPlugin implements Listener {
-	private static TownyChatBridge inst;
+public class TownyBridge extends JavaPlugin implements Listener {
+	private static TownyBridge inst;
 	public static final int CHAT_TIMEOUT = 10000; // How long in ms before a cross-server chat expires
 	
 	public void onEnable() {
@@ -40,7 +40,7 @@ public class TownyChatBridge extends JavaPlugin implements Listener {
 	}
 	*/
 	
-	public static TownyChatBridge inst() {
+	public static TownyBridge inst() {
 		return inst;
 	}
 }
