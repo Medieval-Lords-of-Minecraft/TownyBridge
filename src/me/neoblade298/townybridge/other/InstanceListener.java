@@ -35,7 +35,7 @@ public class InstanceListener implements Listener {
 				try {
 					
 					// Towns in a nation
-					ResultSet rs = NeoCore.getStatement()
+					ResultSet rs = NeoCore.getDefaultStatement()
 							.executeQuery("SELECT b.uuid, c.uuid FROM MLMC.TOWNY_TOWNS as b,"
 									+ " MLMC.TOWNY_NATIONS as c WHERE b.nation = c.name;");
 					while (rs.next()) {
@@ -49,7 +49,7 @@ public class InstanceListener implements Listener {
 					}
 					
 					// Towns not in a nation
-					rs = NeoCore.getStatement()
+					rs = NeoCore.getDefaultStatement()
 							.executeQuery("SELECT b.uuid FROM MLMC.TOWNY_TOWNS as b WHERE b.nation = '';");
 					while (rs.next()) {
 						UUID tuuid = UUID.fromString(rs.getString(1));
@@ -113,7 +113,7 @@ public class InstanceListener implements Listener {
 		new BukkitRunnable() {
 			public void run() {
 				try {
-					ResultSet rs = NeoCore.getStatement().executeQuery(
+					ResultSet rs = NeoCore.getDefaultStatement().executeQuery(
 							"SELECT b.uuid FROM MLMC.TOWNY_RESIDENTS as a, MLMC.TOWNY_TOWNS as b "
 									+ "WHERE a.town = b.name AND a.name = '"
 									+ p.getName() + "';");
