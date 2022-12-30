@@ -141,7 +141,6 @@ public class InstanceListener implements Listener {
 		long timestamp = Long.parseLong(e.getMessages().get(3));
 		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 
-		System.out.println("IL pmsg TC");
 		handleTownChat(town, e.getMessages().get(2), e.getMessages().get(0));
 	}
 	
@@ -159,7 +158,6 @@ public class InstanceListener implements Listener {
 		long timestamp = Long.parseLong(e.getMessages().get(4));
 		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 
-		System.out.println("IL pmsg NC");
 		handleNationChat(town, e.getMessages().get(3), e.getMessages().get(2), e.getMessages().get(0));
 	}
 	
