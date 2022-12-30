@@ -38,8 +38,9 @@ public class TownyListener implements Listener {
 		// Only send message of players with a town
 		if (t == null) return;
 		String nick = ChatControlAPI.getPlayerCache(p).getTag(Type.NICK);
-		BungeeAPI.sendPluginMessage(p, "townchatout", e.getMessage(), t.getUUID().toString(), nick != null ? "*" + nick : p.getName(),
-				Long.toString(System.currentTimeMillis()));
+		System.out.println("TL TC OUT");
+		BungeeAPI.sendPluginMessage("townchatout", new String[] {e.getMessage(), t.getUUID().toString(), nick != null ? "*" + nick : p.getName(),
+				Long.toString(System.currentTimeMillis())});
 	}
 	
 	@EventHandler
@@ -56,8 +57,8 @@ public class TownyListener implements Listener {
 		// Only send message of players with a town and nation
 		if (t == null || n == null) return;
 		String nick = ChatControlAPI.getPlayerCache(p).getTag(Type.NICK);
-		BungeeAPI.sendPluginMessage(p, "nationchatout", e.getMessage(), t.getUUID().toString(), nick != null ? "*" + nick : p.getName(),
-				t.getName(), Long.toString(System.currentTimeMillis()));
+		BungeeAPI.sendPluginMessage("nationchatout", new String[] {e.getMessage(), t.getUUID().toString(), nick != null ? "*" + nick : p.getName(),
+				t.getName(), Long.toString(System.currentTimeMillis())});
 	}
 
 	@EventHandler
@@ -108,6 +109,7 @@ public class TownyListener implements Listener {
 	
 	private void handleIncomingTownChat(PluginMessageEvent e) {
 		if (api == null) api = TownyAPI.getInstance();
+		System.out.println("TL pmsg TC");
 		long timestamp = Long.parseLong(e.getMessages().get(3));
 		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 		String msg = "&f[&3TC&f] &f" + e.getMessages().get(2) + ": &b" + e.getMessages().get(0);
@@ -121,6 +123,7 @@ public class TownyListener implements Listener {
 	
 	private void handleIncomingNationChat(PluginMessageEvent e) {
 		if (api == null) api = TownyAPI.getInstance();
+		System.out.println("TL pmsg NC");
 		long timestamp = Long.parseLong(e.getMessages().get(3));
 		if (timestamp + TownyBridge.CHAT_TIMEOUT < System.currentTimeMillis()) return;
 		
