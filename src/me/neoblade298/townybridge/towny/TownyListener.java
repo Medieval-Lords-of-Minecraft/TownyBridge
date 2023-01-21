@@ -18,8 +18,8 @@ import com.palmergames.bukkit.towny.object.Nation;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.Town;
 
-import me.neoblade298.neocore.bungee.BungeeAPI;
-import me.neoblade298.neocore.bungee.PluginMessageEvent;
+import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
+import me.neoblade298.neocore.bukkit.bungee.PluginMessageEvent;
 import me.neoblade298.neocore.util.Util;
 import me.neoblade298.townybridge.TownyBridge;
 

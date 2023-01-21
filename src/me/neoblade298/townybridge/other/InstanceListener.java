@@ -16,9 +16,9 @@ import org.mineacademy.chatcontrol.api.ChatChannelEvent;
 import org.mineacademy.chatcontrol.api.ChatControlAPI;
 import org.mineacademy.chatcontrol.operator.Tag.Type;
 
-import me.neoblade298.neocore.NeoCore;
-import me.neoblade298.neocore.bungee.BungeeAPI;
-import me.neoblade298.neocore.bungee.PluginMessageEvent;
+import me.neoblade298.neocore.bukkit.NeoCore;
+import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
+import me.neoblade298.neocore.bukkit.bungee.PluginMessageEvent;
 import me.neoblade298.neocore.util.Util;
 import me.neoblade298.townybridge.TownyBridge;
 
@@ -35,7 +35,7 @@ public class InstanceListener implements Listener {
 				try {
 					
 					// Towns in a nation
-					ResultSet rs = NeoCore.getPluginStatement("TownyBridge")
+					ResultSet rs = NeoCore.getStatement("TownyBridge")
 							.executeQuery("SELECT b.uuid, c.uuid FROM MLMC.TOWNY_TOWNS as b,"
 									+ " MLMC.TOWNY_NATIONS as c WHERE b.nation = c.name;");
 					while (rs.next()) {
@@ -49,7 +49,7 @@ public class InstanceListener implements Listener {
 					}
 					
 					// Towns not in a nation
-					rs = NeoCore.getPluginStatement("TownyBridge")
+					rs = NeoCore.getStatement("TownyBridge")
 							.executeQuery("SELECT b.uuid FROM MLMC.TOWNY_TOWNS as b WHERE b.nation = '';");
 					while (rs.next()) {
 						UUID tuuid = UUID.fromString(rs.getString(1));
@@ -113,7 +113,7 @@ public class InstanceListener implements Listener {
 		new BukkitRunnable() {
 			public void run() {
 				try {
-					ResultSet rs = NeoCore.getPluginStatement("TownyBridge").executeQuery(
+					ResultSet rs = NeoCore.getStatement("TownyBridge").executeQuery(
 							"SELECT b.uuid FROM MLMC.TOWNY_RESIDENTS as a, MLMC.TOWNY_TOWNS as b "
 									+ "WHERE a.town = b.name AND a.name = '"
 									+ p.getName() + "';");

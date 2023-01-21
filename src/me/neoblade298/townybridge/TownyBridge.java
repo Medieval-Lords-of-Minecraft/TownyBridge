@@ -4,8 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.neoblade298.neocore.NeoCore;
-import me.neoblade298.neocore.instancing.InstanceType;
+import me.neoblade298.neocore.bukkit.InstanceType;
+import me.neoblade298.neocore.bukkit.NeoCore;
 import me.neoblade298.townybridge.commands.Commands;
 import me.neoblade298.townybridge.other.InstanceListener;
 import me.neoblade298.townybridge.towny.TownyListener;
