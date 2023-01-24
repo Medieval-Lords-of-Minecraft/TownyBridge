@@ -1,7 +1,9 @@
 package me.neoblade298.townybridge.other;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,7 +21,7 @@ import org.mineacademy.chatcontrol.operator.Tag.Type;
 import me.neoblade298.neocore.bukkit.NeoCore;
 import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
 import me.neoblade298.neocore.bukkit.bungee.PluginMessageEvent;
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
 import me.neoblade298.townybridge.TownyBridge;
 
 public class InstanceListener implements Listener {
@@ -32,11 +34,11 @@ public class InstanceListener implements Listener {
 	public InstanceListener() {
 		new BukkitRunnable() {
 			public void run() {
-				try {
+		    	try (Connection con = NeoCore.getConnection("TownyBridge");
+		    			Statement stmt = con.createStatement();){
 					
 					// Towns in a nation
-					ResultSet rs = NeoCore.getStatement("TownyBridge")
-							.executeQuery("SELECT b.uuid, c.uuid FROM MLMC.TOWNY_TOWNS as b,"
+					ResultSet rs = stmt.executeQuery("SELECT b.uuid, c.uuid FROM MLMC.TOWNY_TOWNS as b,"
 									+ " MLMC.TOWNY_NATIONS as c WHERE b.nation = c.name;");
 					while (rs.next()) {
 						UUID tuuid = UUID.fromString(rs.getString(1));
@@ -49,12 +51,12 @@ public class InstanceListener implements Listener {
 					}
 					
 					// Towns not in a nation
-					rs = NeoCore.getStatement("TownyBridge")
-							.executeQuery("SELECT b.uuid FROM MLMC.TOWNY_TOWNS as b WHERE b.nation = '';");
+					rs = stmt.executeQuery("SELECT b.uuid FROM MLMC.TOWNY_TOWNS as b WHERE b.nation = '';");
 					while (rs.next()) {
 						UUID tuuid = UUID.fromString(rs.getString(1));
 						towns.add(tuuid);
 					}
+					rs.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -112,12 +114,13 @@ public class InstanceListener implements Listener {
 		Player p = e.getPlayer();
 		new BukkitRunnable() {
 			public void run() {
-				try {
-					ResultSet rs = NeoCore.getStatement("TownyBridge").executeQuery(
-							"SELECT b.uuid FROM MLMC.TOWNY_RESIDENTS as a, MLMC.TOWNY_TOWNS as b "
-									+ "WHERE a.town = b.name AND a.name = '"
-									+ p.getName() + "';");
-
+				try (Connection con = NeoCore.getConnection("TownyBridge");
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(
+								"SELECT b.uuid FROM MLMC.TOWNY_RESIDENTS as a, MLMC.TOWNY_TOWNS as b "
+										+ "WHERE a.town = b.name AND a.name = '"
+										+ p.getName() + "';");){
+					
 					if (!rs.next()) return;
 					String townuuid = rs.getString(1);
 
@@ -148,7 +151,7 @@ public class InstanceListener implements Listener {
 		String formatted = "&f[&3TC&f] &f" + name + ": &b" + msg;
 		if (onlinePlayers.containsKey(town)) {
 			for (Player p : onlinePlayers.get(town)) {
-				Util.msg(p, formatted, false);
+				BukkitUtil.msg(p, formatted, false);
 			}
 		}
 	}
@@ -175,7 +178,7 @@ public class InstanceListener implements Listener {
 		for (UUID townInNation : nationToTowns.get(nation)) {
 			if (onlinePlayers.containsKey(townInNation)) {
 				for (Player p : onlinePlayers.get(townInNation)) {
-					Util.msg(p, formatted, false);
+					BukkitUtil.msg(p, formatted, false);
 				}
 			}
 		}

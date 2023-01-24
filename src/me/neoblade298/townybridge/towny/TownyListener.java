@@ -20,7 +20,7 @@ import com.palmergames.bukkit.towny.object.Town;
 
 import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
 import me.neoblade298.neocore.bukkit.bungee.PluginMessageEvent;
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
 import me.neoblade298.townybridge.TownyBridge;
 
 public class TownyListener implements Listener {
@@ -115,7 +115,7 @@ public class TownyListener implements Listener {
 		UUID tuuid = UUID.fromString(e.getMessages().get(1));
 		Town town = TownyAPI.getInstance().getTown(tuuid);
 		for (Player p : api.getOnlinePlayersInTown(town)) {
-			Util.msg(p, msg, false);
+			BukkitUtil.msg(p, msg, false);
 		}
 	}
 	
@@ -130,7 +130,7 @@ public class TownyListener implements Listener {
 		String msg = "&f[&6NC&f] &f[&e" + town.getName() + "&f] " + e.getMessages().get(2) + ": &e" + e.getMessages().get(0);
 		
 		for (Player p : api.getOnlinePlayers(nation)) {
-			Util.msg(p, msg, false);
+			BukkitUtil.msg(p, msg, false);
 		}
 	}
 }
