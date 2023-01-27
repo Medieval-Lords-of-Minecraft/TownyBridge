@@ -21,7 +21,7 @@ import org.mineacademy.chatcontrol.operator.Tag.Type;
 import me.neoblade298.neocore.bukkit.NeoCore;
 import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
 import me.neoblade298.neocore.bukkit.bungee.PluginMessageEvent;
-import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+import me.neoblade298.neocore.bukkit.util.Util;
 import me.neoblade298.townybridge.TownyBridge;
 
 public class InstanceListener implements Listener {
@@ -151,7 +151,7 @@ public class InstanceListener implements Listener {
 		String formatted = "&f[&3TC&f] &f" + name + ": &b" + msg;
 		if (onlinePlayers.containsKey(town)) {
 			for (Player p : onlinePlayers.get(town)) {
-				BukkitUtil.msg(p, formatted, false);
+				Util.msg(p, formatted, false);
 			}
 		}
 	}
@@ -178,7 +178,7 @@ public class InstanceListener implements Listener {
 		for (UUID townInNation : nationToTowns.get(nation)) {
 			if (onlinePlayers.containsKey(townInNation)) {
 				for (Player p : onlinePlayers.get(townInNation)) {
-					BukkitUtil.msg(p, formatted, false);
+					Util.msg(p, formatted, false);
 				}
 			}
 		}

@@ -4,14 +4,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+import me.neoblade298.neocore.bukkit.util.Util;
 
 
 public class Commands implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String lbl, String[] args) {
-		BukkitUtil.msg(sender, "&cYou're not on the Towny server! Type /hub to return to server selector!");
+		Util.msg(sender, "&cYou're not on the Towny server! Type /hub to return to server selector!");
 		return true;
 	}
 }
